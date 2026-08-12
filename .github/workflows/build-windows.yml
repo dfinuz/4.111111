@@ -1,0 +1,31 @@
+name: Build Windows installer
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install build tools
+        run: python -m pip install -r requirements-build.txt
+      - name: Build standalone DFIN application
+        run: python -m PyInstaller --noconfirm --clean --onefile --windowed --name DFIN_DSKEYS_Manager --collect-all send2trash DFIN_DSKEYS_Manager.py
+      - name: Bundle official Python installer and offline libraries
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force vendor
+          Invoke-WebRequest https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe -OutFile vendor/python-3.12.10-amd64.exe
+          python -m pip download --only-binary=:all: --dest vendor cryptography send2trash
+      - name: Install Inno Setup
+        run: choco install innosetup --no-progress -y
+      - name: Build full offline installer
+        shell: powershell
+        run: '& "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" DFIN_DSKEYS_Manager.iss'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DFIN-DSKEYS-FULL-v4.1
+          path: installer/DFIN_DSKEYS_Manager_Setup_v4.1_FULL.exe
