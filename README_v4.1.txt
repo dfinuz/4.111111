@@ -1,0 +1,1 @@
+DFIN DSKEYS Manager v4.1 fixes E-IMZO domain identification by registering localhost and 127.0.0.1 API keys before scanning. Replace the three files and workflow, rebuild, and distribute DFIN_DSKEYS_Manager_Setup_v4.1_FULL.exe.
