@@ -1,57 +1,64 @@
 # Dastur O‘rnatish Yo‘riqnomasi
 
-Dastur to‘g‘ri ishlashi uchun quyidagi bosqichlarni bajaring.
+Dasturni ishlatish uchun quyidagi bosqichlarni bajaring.
 
-## 1-qadam: Python o‘rnatish
+## 1-qadam: Dastur faylini yuklab olish
 
-Windows Terminal yoki Command Prompt'ni administrator sifatida oching va quyidagi buyruqni kiriting:
+1. GitHub repository sahifasini oching.
+2. **Actions** bo‘limiga kiring.
+3. **Build Windows installer** workflow'ini tanlang.
+4. Eng so‘nggi muvaffaqiyatli (**Success**) build'ni oching.
+5. Sahifaning pastki qismidagi **Artifacts** bo‘limini toping.
+6. Masalan, **DFIN-DSKEYS-FULL-v4.1** nomli faylni bosing.
+7. ZIP fayl yuklab olinadi.
+8. ZIP faylni oching va ichidagi `.exe` faylni chiqaring.
+
+> Eslatma: GitHub akkauntiga kirgan bo‘lishingiz kerak, aks holda Artifact fayllarini yuklab olish imkoniyati bo‘lmasligi mumkin.
+
+
+## 2-qadam: Python o‘rnatish
+
+Windows Terminal yoki Command Prompt oynasini oching va quyidagi buyruqni kiriting:
 
 ```cmd
 winget install Python.Python.3.13
 ```
 
-O‘rnatish tugagach, Python muvaffaqiyatli o‘rnatilganini tekshiring:
-
-```cmd
-python --version
-```
-
-yoki
+O‘rnatish yakunlangach tekshiring:
 
 ```cmd
 py --version
 ```
 
----
 
-## 2-qadam: Kerakli kutubxonalarni o‘rnatish
 
-Quyidagi buyruq orqali zarur paketlarni o‘rnating:
+## 3-qadam: Kerakli kutubxonalarni o‘rnatish
+
+Quyidagi buyruqni ishga tushiring:
 
 ```cmd
 py -m pip install --upgrade cryptography send2trash
 ```
 
-O‘rnatish muvaffaqiyatli yakunlanganini kuting.
 
----
 
-## 3-qadam: Dastur o‘rnatish
+## 4-qadam: Dasturni ishga tushirish
 
-1. Sizga berilgan `.exe` faylni yuklab oling.
-2. Faylni ishga tushiring.
-3. O‘rnatish oynasidagi ko‘rsatmalarga amal qiling.
-4. O‘rnatish tugagach, dasturni ishga tushiring.
+1. Artifact ichidan chiqarilgan `.exe` faylni ishga tushiring.
+2. Agar Windows xavfsizlik ogohlantirishi chiqsa:
+   - **More info** tugmasini bosing.
+   - **Run anyway** tugmasini bosing.
+3. Dastur avtomatik ravishda ishga tushadi.
 
----
 
-## Muammolar yuzaga kelsa
 
-Agar dastur ishga tushmasa:
+## Muammo yuzaga kelsa
 
-1. Python o‘rnatilganini tekshiring.
-2. `cryptography` va `send2trash` paketlari o‘rnatilganini tekshiring.
-3. Kompyuterni qayta yuklab ko‘ring.
-4. Muammo davom etsa, qo‘llab-quvvatlash xizmatiga murojaat qiling.
+Python o‘rnatilganini tekshiring.
 
-Tavsiya: Python va barcha paketlarni o‘rnatgandan so‘ng kompyuterni qayta ishga tushiring.
+`cryptography` va `send2trash` kutubxonalari o‘rnatilganini tekshiring.
+
+ Eng so‘nggi GitHub Action build'idan yuklab olayotganingizga ishonch hosil qiling.
+
+ Kompyuterni qayta ishga tushirib ko‘ring.
+
